@@ -21,11 +21,12 @@ export default function TerminalSection() {
   const [input, setInput] = useState("");
   const [cmdHistory, setCmdHistory] = useState<string[]>([]);
   const [cmdIdx, setCmdIdx] = useState(-1);
-  const bottomRef = useRef<HTMLDivElement>(null);
+  const outputRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
 
   useEffect(() => {
-    bottomRef.current?.scrollIntoView({ behavior: "smooth" });
+    const el = outputRef.current;
+    if (el) el.scrollTop = el.scrollHeight;
   }, [history]);
 
   const run = (cmd: string) => {
@@ -94,6 +95,7 @@ export default function TerminalSection() {
 
           {/* Output */}
           <div
+            ref={outputRef}
             className="p-4 h-72 overflow-y-auto font-mono text-xs leading-6 cursor-text"
             style={{ background: "#0a0a0c" }}
             onClick={() => inputRef.current?.focus()}
@@ -117,7 +119,6 @@ export default function TerminalSection() {
               />
               <span className="animate-blink" style={{ color: "var(--purple)" }}>▋</span>
             </div>
-            <div ref={bottomRef} />
           </div>
         </div>
       </div>
