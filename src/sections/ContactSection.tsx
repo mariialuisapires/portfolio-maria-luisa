@@ -20,7 +20,7 @@ const LINKS = [
   { label: "Email",    value: PERSONAL.email,                       href: `mailto:${PERSONAL.email}`,     icon: "✉",  color: "var(--purple)" },
   { label: "GitHub",   value: "github.com/mariialuisapires",         href: PERSONAL.github,                icon: "🐙", color: "var(--cyan)"   },
   { label: "LinkedIn", value: "linkedin.com/in/maria-pires",         href: PERSONAL.linkedin,              icon: "💼", color: "var(--blue)"   },
-  { label: "Telefone", value: PERSONAL.phone,                       href: "tel:+5551997765859",            icon: "📱", color: "var(--pink)"   },
+  { label: "WhatsApp", value: "wa.me/5551997765859",                  href: PERSONAL.whatsapp,              icon: "📱", color: "var(--pink)"   },
 ];
 
 export default function ContactSection() {

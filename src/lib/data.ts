@@ -7,6 +7,7 @@ export const PERSONAL = {
   phone: "(51) 99776-5859",
   github: "https://github.com/mariialuisapires",
   linkedin: "https://linkedin.com/in/maria-pires-670555356",
+  whatsapp: "https://wa.me/5551997765859",
   location: "Rio Grande do Sul, Brasil",
 };
 
