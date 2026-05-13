@@ -11,6 +11,15 @@ const SECTIONS = ["hero", "about", "skills", "projects", "terminal", "contact"];
 export default function IDELayout({ children }: { children: React.ReactNode }) {
   const [activeSection, setActiveSection] = useState("hero");
   const observerRef = useRef<IntersectionObserver | null>(null);
+  const mainRef = useRef<HTMLElement>(null);
+
+  // Sempre abre no topo ao carregar
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      window.history.scrollRestoration = "manual";
+    }
+    mainRef.current?.scrollTo({ top: 0 });
+  }, []);
 
   useEffect(() => {
     observerRef.current = new IntersectionObserver(
@@ -41,7 +50,7 @@ export default function IDELayout({ children }: { children: React.ReactNode }) {
           <TabBar activeSection={activeSection} onNavigate={setActiveSection} />
 
           {/* Main scrollable content */}
-          <main className="flex-1 overflow-y-auto">
+          <main ref={mainRef} className="flex-1 overflow-y-auto">
             {children}
           </main>
         </div>
