@@ -18,13 +18,14 @@ export default function TitleBar() {
       {/* Title */}
       <div className="text-xs font-medium" style={{ color: "var(--text-secondary)" }}>
         <span style={{ color: "var(--purple)" }}>portfolio</span>
-        <span style={{ color: "var(--text-muted)" }}> — </span>
-        <span>{PERSONAL.name}</span>
-        <span style={{ color: "var(--text-muted)" }}> — VSCode Premium</span>
+        <span style={{ color: "var(--text-muted)" }}> / </span>
+        <span className="hidden sm:inline">{PERSONAL.name}</span>
+        <span className="sm:hidden">{PERSONAL.name.split(" ")[0]}</span>
+        <span className="hidden md:inline" style={{ color: "var(--text-muted)" }}> — VSCode</span>
       </div>
 
       {/* Right icons */}
-      <div className="flex items-center gap-3 text-xs" style={{ color: "var(--text-muted)" }}>
+      <div className="hidden sm:flex items-center gap-3 text-xs" style={{ color: "var(--text-muted)" }}>
         <span>⊞</span>
         <span>⊟</span>
         <span>✕</span>

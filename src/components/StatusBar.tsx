@@ -32,17 +32,17 @@ export default function StatusBar({ activeSection }: StatusBarProps) {
           <span>main</span>
         </span>
         <span style={{ color: "rgba(255,255,255,0.55)" }}>|</span>
-        <span>📄 {branchLabel}.tsx</span>
-        <span style={{ color: "rgba(255,255,255,0.55)" }}>TypeScript React</span>
+        <span>📄 {branchLabel}</span>
+        <span className="hidden sm:inline" style={{ color: "rgba(255,255,255,0.55)" }}>TypeScript React</span>
       </div>
 
       <div className="flex items-center gap-3">
-        <span>UTF-8</span>
-        <span style={{ color: "rgba(255,255,255,0.55)" }}>|</span>
-        <span>Ln 1, Col 1</span>
-        <span style={{ color: "rgba(255,255,255,0.55)" }}>|</span>
-        <span>🟢 Prettier</span>
-        <span style={{ color: "rgba(255,255,255,0.55)" }}>|</span>
+        <span className="hidden md:inline">UTF-8</span>
+        <span className="hidden md:inline" style={{ color: "rgba(255,255,255,0.55)" }}>|</span>
+        <span className="hidden sm:inline">Ln 1, Col 1</span>
+        <span className="hidden sm:inline" style={{ color: "rgba(255,255,255,0.55)" }}>|</span>
+        <span className="hidden md:inline">🟢 Prettier</span>
+        <span className="hidden md:inline" style={{ color: "rgba(255,255,255,0.55)" }}>|</span>
         <span>🔔 {time}</span>
       </div>
     </div>

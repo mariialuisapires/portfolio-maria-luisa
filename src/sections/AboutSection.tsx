@@ -27,28 +27,30 @@ const TIMELINE = [
   { year: "2026", title: "FitDivas & sistemas reais", desc: "App fitness completo: JWT, Firebase, painel admin, Clean Architecture", color: "var(--pink)" },
 ];
 
-const CODE_SNIPPET = `// about.cs
-public class Developer
-{
-    public string Name    => "Maria Luísa Pires";
-    public string Role    => "Backend & Mobile Dev";
-    public string Course  => "ADS — 5º semestre";
-
-    public string[] Stack => new[] {
-        "C# / ASP.NET Core",
-        "Flutter / Dart",
-        "PostgreSQL",
-        "REST APIs + JWT",
-    };
-
-    public string Goal =>
-        "Oportunidades em TI — " +
-        "presencial, híbrido ou remoto.";
-}`;
+const CODE_LINES = [
+  [{ t: "// about.cs",                             c: "muted"   }],
+  [{ t: "public",   c: "purple" }, { t: " ",           c: "" }, { t: "class",  c: "purple" }, { t: " Developer",                   c: ""       }],
+  [{ t: "{",                                       c: ""        }],
+  [{ t: "    " }, { t: "public", c: "purple" }, { t: " " }, { t: "string", c: "purple" }, { t: " Name    ", c: "" }, { t: "=>", c: "pink" }, { t: " " }, { t: '"Maria Luísa Pires"', c: "green" }, { t: ";", c: "" }],
+  [{ t: "    " }, { t: "public", c: "purple" }, { t: " " }, { t: "string", c: "purple" }, { t: " Role    ", c: "" }, { t: "=>", c: "pink" }, { t: " " }, { t: '"Backend & Mobile Dev"', c: "green" }, { t: ";", c: "" }],
+  [{ t: "    " }, { t: "public", c: "purple" }, { t: " " }, { t: "string", c: "purple" }, { t: " Course  ", c: "" }, { t: "=>", c: "pink" }, { t: " " }, { t: '"ADS — 5º semestre"', c: "green" }, { t: ";", c: "" }],
+  [{ t: "",                                        c: ""        }],
+  [{ t: "    " }, { t: "public", c: "purple" }, { t: " " }, { t: "string", c: "purple" }, { t: "[] Stack ", c: "" }, { t: "=>", c: "pink" }, { t: " " }, { t: "new", c: "purple" }, { t: "[] {", c: "" }],
+  [{ t: '        ' }, { t: '"C# / ASP.NET Core"',  c: "green"  }, { t: ",", c: "" }],
+  [{ t: '        ' }, { t: '"Flutter / Dart"',      c: "green"  }, { t: ",", c: "" }],
+  [{ t: '        ' }, { t: '"PostgreSQL"',           c: "green"  }, { t: ",", c: "" }],
+  [{ t: '        ' }, { t: '"REST APIs + JWT"',      c: "green"  }, { t: ",", c: "" }],
+  [{ t: "    };",                                  c: ""        }],
+  [{ t: "",                                        c: ""        }],
+  [{ t: "    " }, { t: "public", c: "purple" }, { t: " " }, { t: "string", c: "purple" }, { t: " Goal ", c: "" }, { t: "=>", c: "pink" }],
+  [{ t: '        ' }, { t: '"Oportunidades em TI — " +', c: "green" }],
+  [{ t: '        ' }, { t: '"presencial, híbrido ou remoto."', c: "green" }, { t: ";", c: "" }],
+  [{ t: "}",                                       c: ""        }],
+] as { t: string; c?: string }[][];
 
 export default function AboutSection() {
   return (
-    <section id="about" className="py-24 px-6" style={{ background: "var(--bg-primary)" }}>
+    <section id="about" className="py-16 sm:py-24 px-4 sm:px-6" style={{ background: "var(--bg-primary)" }}>
       <div className="max-w-6xl mx-auto">
         <FadeUp className="mb-14">
           <div className="flex items-center gap-3 mb-2">
@@ -125,17 +127,24 @@ export default function AboutSection() {
                 <span className="ml-2 text-[11px]" style={{ color: "var(--text-muted)" }}>about.cs</span>
               </div>
               <pre className="p-5 text-[11px] leading-6 overflow-x-auto font-mono" style={{ color: "var(--text-secondary)" }}>
-                {CODE_SNIPPET.split("\n").map((line, i) => {
-                  const colored = line
-                    .replace(/(public|class|string|new)\b/g, `<span style="color:var(--purple)">$1</span>`)
-                    .replace(/(=>)/g, `<span style="color:var(--pink)">$1</span>`)
-                    .replace(/(".*?")/g, `<span style="color:var(--green)">$1</span>`)
-                    .replace(/(\/\/.*)/g, `<span style="color:var(--text-muted)">$1</span>`);
+                {CODE_LINES.map((tokens, i) => {
+                  const colorMap: Record<string, string> = {
+                    purple: "var(--purple)",
+                    pink:   "var(--pink)",
+                    green:  "var(--green)",
+                    muted:  "var(--text-muted)",
+                  };
                   return (
-                    <div key={i} className="flex gap-4">
+                    <span key={i} style={{ display: "flex", gap: "1rem" }}>
                       <span className="select-none w-5 text-right shrink-0" style={{ color: "var(--text-muted)" }}>{i + 1}</span>
-                      <span dangerouslySetInnerHTML={{ __html: colored }} />
-                    </div>
+                      <span>
+                        {tokens.map((tok, j) => (
+                          <span key={j} style={tok.c ? { color: colorMap[tok.c] } : undefined}>
+                            {tok.t}
+                          </span>
+                        ))}
+                      </span>
+                    </span>
                   );
                 })}
               </pre>

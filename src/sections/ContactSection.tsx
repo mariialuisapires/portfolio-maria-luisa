@@ -25,9 +25,11 @@ const LINKS = [
 
 export default function ContactSection() {
   const { ref, vis } = useSectionVisible();
+  const [year, setYear] = useState<number>(2026);
+  useEffect(() => setYear(new Date().getFullYear()), []);
 
   return (
-    <section ref={ref} id="contact" className="py-24 px-6" style={{ background: "var(--bg-primary)" }}>
+    <section ref={ref} id="contact" className="py-16 sm:py-24 px-4 sm:px-6" style={{ background: "var(--bg-primary)" }}>
       <div className="max-w-4xl mx-auto">
         <div className={`text-center mb-14 fade-up ${vis ? "visible" : ""}`}>
           <div className="flex items-center justify-center gap-3 mb-2">
@@ -76,7 +78,7 @@ export default function ContactSection() {
           Built with <span style={{ color: "var(--purple)" }}>Next.js</span> +{" "}
           <span style={{ color: "var(--pink)" }}>CSS Transitions</span> +{" "}
           <span style={{ color: "var(--cyan)" }}>Tailwind CSS</span>
-          {" "}— {new Date().getFullYear()} Maria Luísa Pires Soares
+          {" "}— {year} Maria Luísa Pires Soares
         </p>
       </div>
     </section>

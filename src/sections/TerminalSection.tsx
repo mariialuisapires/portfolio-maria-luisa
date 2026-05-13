@@ -60,7 +60,7 @@ export default function TerminalSection() {
   };
 
   return (
-    <section id="terminal" className="py-24 px-6" style={{ background: "var(--bg-surface)" }}>
+    <section id="terminal" className="py-16 sm:py-24 px-4 sm:px-6" style={{ background: "var(--bg-surface)" }}>
       <div className="max-w-4xl mx-auto">
         <div className="mb-10">
           <div className="flex items-center gap-3 mb-2">

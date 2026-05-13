@@ -39,7 +39,7 @@ export default function TabBar({ activeSection, onNavigate }: TabBarProps) {
           <button
             key={tab.id}
             onClick={() => scrollTo(tab.section)}
-            className="flex items-center gap-2 px-4 py-2 text-xs whitespace-nowrap transition-all relative shrink-0"
+            className="flex items-center gap-1.5 sm:gap-2 px-2.5 sm:px-4 py-1.5 sm:py-2 text-[10px] sm:text-xs whitespace-nowrap transition-all relative shrink-0"
             style={{
               color: active ? "var(--text-primary)" : "var(--text-muted)",
               background: active ? "var(--bg-elevated)" : "transparent",
@@ -47,8 +47,9 @@ export default function TabBar({ activeSection, onNavigate }: TabBarProps) {
               borderTop: active ? `1px solid ${tab.dot}` : "1px solid transparent",
             }}
           >
-            <span className="w-2 h-2 rounded-full shrink-0" style={{ background: tab.dot }} />
-            <span>{tab.label}</span>
+            <span className="w-1.5 h-1.5 sm:w-2 sm:h-2 rounded-full shrink-0" style={{ background: tab.dot }} />
+            <span className="hidden sm:inline">{tab.label}</span>
+            <span className="sm:hidden">{tab.id}</span>
           </button>
         );
       })}

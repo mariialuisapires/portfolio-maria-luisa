@@ -13,12 +13,9 @@ export default function IDELayout({ children }: { children: React.ReactNode }) {
   const observerRef = useRef<IntersectionObserver | null>(null);
   const mainRef = useRef<HTMLElement>(null);
 
-  // Sempre abre no topo ao carregar
   useEffect(() => {
-    if (typeof window !== "undefined") {
-      window.history.scrollRestoration = "manual";
-    }
-    mainRef.current?.scrollTo({ top: 0 });
+    window.history.scrollRestoration = "manual";
+    if (mainRef.current) mainRef.current.scrollTop = 0;
   }, []);
 
   useEffect(() => {
@@ -40,7 +37,7 @@ export default function IDELayout({ children }: { children: React.ReactNode }) {
   }, []);
 
   return (
-    <div className="flex flex-col h-screen overflow-hidden" style={{ background: "var(--bg-primary)" }}>
+    <div className="flex flex-col h-screen overflow-hidden animate-rush-to-top" style={{ background: "var(--bg-primary)" }}>
       <TitleBar />
 
       <div className="flex flex-1 overflow-hidden">

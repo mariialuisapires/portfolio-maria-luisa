@@ -21,30 +21,30 @@ function useSectionVisible() {
 function ProjectModal({ project, onClose }: { project: Project; onClose: () => void }) {
   return (
     <div
-      className="fixed inset-0 z-50 flex items-center justify-center p-4"
+      className="fixed inset-0 z-50 flex items-end sm:items-center justify-center sm:p-4"
       style={{ background: "rgba(0,0,0,0.75)" }}
       onClick={onClose}
     >
       <div
-        className="w-full max-w-2xl max-h-[85vh] overflow-y-auto rounded-2xl"
+        className="w-full max-w-2xl max-h-[90vh] sm:max-h-[85vh] overflow-y-auto rounded-t-2xl sm:rounded-2xl"
         style={{ background: "var(--bg-elevated)", border: `1px solid ${project.color}35` }}
         onClick={(e) => e.stopPropagation()}
       >
         {/* Header */}
-        <div className="sticky top-0 flex items-center justify-between px-6 py-4 border-b"
+        <div className="sticky top-0 flex items-center justify-between px-4 sm:px-6 py-3 sm:py-4 border-b"
           style={{ borderColor: "var(--border)", background: "var(--bg-elevated)" }}>
-          <div className="flex items-center gap-3">
-            <div className="w-3 h-3 rounded-full" style={{ background: project.color }} />
-            <span className="font-bold text-lg" style={{ color: "var(--text-primary)" }}>{project.name}</span>
-            <span className="text-[10px] px-2 py-0.5 rounded-full capitalize"
+          <div className="flex items-center gap-2 sm:gap-3 min-w-0">
+            <div className="w-3 h-3 rounded-full shrink-0" style={{ background: project.color }} />
+            <span className="font-bold text-base sm:text-lg truncate" style={{ color: "var(--text-primary)" }}>{project.name}</span>
+            <span className="text-[10px] px-2 py-0.5 rounded-full capitalize shrink-0 hidden sm:inline"
               style={{ background: project.status === "em construção" ? "rgba(250,204,21,0.1)" : "rgba(74,222,128,0.1)", color: project.status === "em construção" ? "var(--yellow)" : "var(--green)" }}>
               {project.status}
             </span>
           </div>
-          <button onClick={onClose} className="transition-colors hover:text-white" style={{ color: "var(--text-muted)" }}>✕</button>
+          <button onClick={onClose} className="transition-colors hover:text-white ml-2 shrink-0 text-lg" style={{ color: "var(--text-muted)" }}>✕</button>
         </div>
 
-        <div className="p-6 space-y-6">
+        <div className="p-4 sm:p-6 space-y-5 sm:space-y-6">
           <p className="text-sm leading-relaxed" style={{ color: "var(--text-secondary)" }}>{project.description}</p>
 
           <div>
@@ -94,8 +94,18 @@ export default function ProjectsSection() {
   const featured = PROJECTS.filter((p) => p.featured);
   const others = PROJECTS.filter((p) => !p.featured);
 
+  useEffect(() => {
+    const handler = (e: Event) => {
+      const id = (e as CustomEvent<string>).detail;
+      const project = PROJECTS.find((p) => p.id === id);
+      if (project) setSelected(project);
+    };
+    window.addEventListener("open-project", handler);
+    return () => window.removeEventListener("open-project", handler);
+  }, []);
+
   return (
-    <section ref={ref} id="projects" className="py-24 px-6" style={{ background: "var(--bg-primary)" }}>
+    <section ref={ref} id="projects" className="py-16 sm:py-24 px-4 sm:px-6" style={{ background: "var(--bg-primary)" }}>
       <div className="max-w-6xl mx-auto">
         {/* Header */}
         <div className={`mb-12 fade-up ${vis ? "visible" : ""}`}>

@@ -72,7 +72,7 @@ export default function HeroSection() {
       />
 
       {/* Main content */}
-      <div className="relative z-10 text-center px-6 max-w-4xl mx-auto">
+      <div className="relative z-10 text-center px-4 sm:px-6 max-w-4xl mx-auto">
         {/* Badge */}
         <div
           className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-xs font-medium mb-8"
@@ -111,11 +111,11 @@ export default function HeroSection() {
         </p>
 
         {/* CTA Buttons */}
-        <div className="flex flex-wrap items-center justify-center gap-4">
+        <div className="flex flex-col sm:flex-row flex-wrap items-center justify-center gap-3 sm:gap-4">
           <a
             href="#projects"
             onClick={(e) => { e.preventDefault(); document.getElementById("projects")?.scrollIntoView({ behavior: "smooth" }); }}
-            className="px-6 py-3 rounded-lg font-semibold text-sm transition-opacity hover:opacity-80"
+            className="w-full sm:w-auto px-6 py-3 rounded-lg font-semibold text-sm transition-opacity hover:opacity-80 text-center"
             style={{
               background: "linear-gradient(135deg, var(--purple-dim), var(--pink-dim))",
               color: "#fff",
@@ -128,7 +128,7 @@ export default function HeroSection() {
             href={PERSONAL.github}
             target="_blank"
             rel="noopener noreferrer"
-            className="px-6 py-3 rounded-lg font-semibold text-sm transition-opacity hover:opacity-80"
+            className="w-full sm:w-auto px-6 py-3 rounded-lg font-semibold text-sm transition-opacity hover:opacity-80 text-center"
             style={{ border: "1px solid rgba(168,85,247,0.35)", color: "var(--purple)" }}
           >
             GitHub ↗
@@ -136,7 +136,7 @@ export default function HeroSection() {
           <a
             href="#contact"
             onClick={(e) => { e.preventDefault(); document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" }); }}
-            className="px-6 py-3 rounded-lg font-semibold text-sm transition-opacity hover:opacity-80"
+            className="w-full sm:w-auto px-6 py-3 rounded-lg font-semibold text-sm transition-opacity hover:opacity-80 text-center"
             style={{ border: "1px solid rgba(236,72,153,0.35)", color: "var(--pink)" }}
           >
             Contato

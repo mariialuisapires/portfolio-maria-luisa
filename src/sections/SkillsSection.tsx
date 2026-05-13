@@ -24,7 +24,7 @@ export default function SkillsSection() {
   const filtered = active === "all" ? SKILLS : SKILLS.filter((s) => s.tag === active);
 
   return (
-    <section ref={ref} id="skills" className="py-24 px-6" style={{ background: "var(--bg-surface)" }}>
+    <section ref={ref} id="skills" className="py-16 sm:py-24 px-4 sm:px-6" style={{ background: "var(--bg-surface)" }}>
       <div className="max-w-6xl mx-auto">
         {/* Header */}
         <div className={`mb-12 fade-up ${vis ? "visible" : ""}`}>

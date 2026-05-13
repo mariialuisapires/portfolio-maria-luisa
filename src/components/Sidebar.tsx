@@ -64,7 +64,12 @@ export default function Sidebar({ activeSection, onNavigate }: SidebarProps) {
                       {PROJECTS.map((p) => (
                         <button
                           key={p.id}
-                          onClick={() => scrollTo("projects")}
+                          onClick={() => {
+                            scrollTo("projects");
+                            setTimeout(() => {
+                              window.dispatchEvent(new CustomEvent("open-project", { detail: p.id }));
+                            }, 300);
+                          }}
                           className="w-full flex items-center gap-2 px-3 py-[3px] rounded text-left transition-colors hover:text-white text-[11px]"
                           style={{ color: p.color }}
                         >
